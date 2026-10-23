@@ -19,7 +19,7 @@ https://verstak-one.vercel.app/
 
 ## Технологии
 
-JavaScript (ES-модули), Vite, Three.js для 3D, jsPDF для PDF. Сервера нет: всё работает в браузере, данные лежат в localStorage. Расчёты вынесены в отдельный слой без привязки к браузеру и покрыты тестами на встроенном `node:test`.
+JavaScript (ES-модули), Vite, Three.js для 3D, jsPDF для PDF. Сервера нет: всё работает в браузере, данные лежат в localStorage.
 
 ## Запуск
 
