@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f5f3" />
+    <meta name="description" content="Рабочее место мебельщика: введите размеры, сразу увидите 3D, получите чертёж, спецификацию, раскрой и смету." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Верстак — конструктор корпусной мебели</title>
+  </head>
+  <body>
+    <div class="app" id="app" data-tab="view">
+      <header class="topbar" id="topbar"></header>
+
+      <aside class="panel panel--params" id="paramsPanel" aria-label="Параметры изделия"></aside>
+
+      <main class="stage" id="stage">
+        <div class="stage__modes" id="modeTabs" role="tablist" aria-label="Режим просмотра"></div>
+        <div class="viewport" id="viewport" aria-label="3D-модель изделия"></div>
+        <div class="drawing" id="drawing" hidden></div>
+        <div class="toolbar" id="toolbar"></div>
+        <div class="tooltip" id="tooltip" hidden></div>
+      </main>
+
+      <aside class="panel panel--results" id="resultsPanel" aria-label="Результаты расчёта"></aside>
+
+      <nav class="mobile-nav" id="mobileNav" aria-label="Разделы"></nav>
+    </div>
+
+    <dialog class="dialog" id="projectsDialog"></dialog>
+    <dialog class="dialog dialog--wide" id="catalogDialog"></dialog>
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

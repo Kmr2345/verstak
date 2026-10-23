@@ -1,0 +1,118 @@
+/* Каркас приложения: шапка, три колонки, мобильная навигация */
+
+.app {
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 344px minmax(0, 1fr) 408px;
+  grid-template-rows: 52px minmax(0, 1fr);
+  grid-template-areas:
+    'top top top'
+    'params stage results';
+}
+
+.topbar {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+
+.panel {
+  background: var(--panel);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+}
+.panel--params {
+  grid-area: params;
+  border-right: 1px solid var(--line);
+}
+.panel--results {
+  grid-area: results;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.stage {
+  grid-area: stage;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  background: var(--bg);
+}
+.viewport {
+  position: absolute;
+  inset: 0;
+}
+.viewport canvas {
+  display: block;
+  touch-action: none;
+}
+.drawing {
+  position: absolute;
+  inset: 52px 16px 16px;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .app {
+    grid-template-columns: 300px minmax(0, 1fr) 360px;
+  }
+}
+
+/* Узкие экраны: одна колонка, разделы переключаются нижней панелью */
+@media (max-width: 960px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 52px minmax(0, 1fr) 56px;
+    grid-template-areas: 'top' 'main' 'nav';
+  }
+  .panel--params,
+  .stage,
+  .panel--results {
+    grid-area: main;
+    border: 0;
+  }
+  .app[data-tab='params'] .stage,
+  .app[data-tab='params'] .panel--results,
+  .app[data-tab='view'] .panel--params,
+  .app[data-tab='view'] .panel--results,
+  .app[data-tab='results'] .panel--params,
+  .app[data-tab='results'] .stage {
+    display: none;
+  }
+  .mobile-nav {
+    grid-area: nav;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: var(--panel);
+    border-top: 1px solid var(--line);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .mobile-nav button {
+    border: 0;
+    background: none;
+    color: var(--muted);
+    display: grid;
+    place-items: center;
+    gap: 0;
+    font-size: 12px;
+  }
+  .mobile-nav button[aria-selected='true'] {
+    color: var(--accent);
+    font-weight: 600;
+  }
+}
